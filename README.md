@@ -1,51 +1,49 @@
 Rancher CLI
 ===========
 
-The Rancher Command Line Interface (CLI) is a unified tool to interact with your Rancher server. 
+The Rancher Command Line Interface (CLI) is a unified tool for interacting with your Rancher Server.
 
 ## Installing
 
-You can check the [releases page](https://github.com/rancher/cli/releases) for direct downloads of the binary and add it to your `$PATH` or [build your own](#building-from-source). 
+Check the [releases page](https://github.com/rancher/cli/releases) for direct downloads of the binary. After you download it, you can add it to your `$PATH` or [build your own from source](#building-from-source).
 
-## Setting up Rancher CLI with a Rancher Server 
+## Setting up Rancher CLI with a Rancher Server
 
-The CLI needs to know your server address and the credentials required to authenticate with it. 
-Rancher CLI will pull this information from a `cli2.json` that is created the first time you run 
-`rancher login`. By default this file is located at `~/.rancher/cli2.json`. 
+The CLI requires your Rancher Server address, along with credentials for authentication. Rancher CLI pulls this information from a JSON file, `cli2.json`, which is created the first time you run `rancher login`. By default, the path of this file is `~/.rancher/cli2.json`.
 
 ```
 $ rancher login https://<RANCHER_SERVER_URL> -t my-secret-token
 ```
 
-> Note: The `<RANCHER_SERVER_URL>` includes whatever port was exposed when installing Rancher server.
+> **Note:** When entering your `<RANCHER_SERVER_URL>`, include the port that was exposed while you installed Rancher Server.
 
 ## Usage
 
-For additional usage run `rancher --help`
+For additional usage, run `rancher --help`
 
-## Building from source
+## Building from Source
 
 The binaries will be located in `/bin`.
 
-### Linux binary
+### Linux Binary
 
 Run `make`.
 
-### Mac binary
+### Mac Binary
 
-Run `CROSS=1 make build`
+Run `CROSS=1 make build`.
 
-## Docker image
+## Docker Image
 
-Run `docker run --rm -it -v <path-to-config>:/root/.rancher/cli2.json rancher/cli [ARGS]`.  
-Pass in credentials by replacing `<path-to-config>` with your config file for the server.
+Run `docker run --rm -it -v <PATH_TO_CONFIG>:/root/.rancher/cli2.json rancher/cli [ARGS]`.
+Pass credentials by replacing `<PATH_TO_CONFIG>` with your config file for the server.
 
-To build `rancher/cli` just run `make`.  To use a custom Docker repository do `REPO=custom make` and it will produce a `custom/cli` image.
+To build `rancher/cli`, run `make`.  To use a custom Docker repository, do `REPO=custom make`, which produces a `custom/cli` image.
 
 ## Contact
 
 For bugs, questions, comments, corrections, suggestions, etc., open an issue in
-[rancher/rancher](//github.com/rancher/rancher/issues) with a title starting with `[cli] `.
+[rancher/rancher](//github.com/rancher/rancher/issues) with a title prefix of `[cli] `.
 
 Or just [click here](//github.com/rancher/rancher/issues/new?title=%5Bcli%5D%20) to create a new issue.
 
