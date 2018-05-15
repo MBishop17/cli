@@ -5,21 +5,23 @@ The Rancher Command Line Interface (CLI) is a unified tool to interact with your
 
 ## Installing
 
-You can check the [releases page](https://github.com/rancher/cli/releases) for direct downloads of the binary or [build your own](#building). 
+You can check the [releases page](https://github.com/rancher/cli/releases) for direct downloads of the binary and add it to your `$PATH` or [build your own](#building-from-source). 
 
-## Setting up Rancher CLI with Rancher Server 
+## Setting up Rancher CLI with a Rancher Server 
 
 The CLI needs to know your server address and the credentials required to authenticate with it. 
-Rancher CLI will pull this information from a `cli.json` that is created the first time you run 
-`rancher login`. By default this file is located at `~/.rancher/cli.json`. 
+Rancher CLI will pull this information from a `cli2.json` that is created the first time you run 
+`rancher login`. By default this file is located at `~/.rancher/cli2.json`. 
 
 ```
-$ rancher login https://<RANCHER_SERVER_URL> -t my-secret-token --name CoolServer1
+$ rancher login https://<RANCHER_SERVER_URL> -t my-secret-token
 ```
 
 > Note: The `<RANCHER_SERVER_URL>` includes whatever port was exposed when installing Rancher server.
 
-If you want to use Rancher CLI on a server that uses a self signed cert you will need to download the cert from `<RANCHER_SERVER_URL>/v3/settings` and pass that into `rancher login` using `--cacert` 
+## Usage
+
+For additional usage run `rancher --help`
 
 ## Building from source
 
@@ -35,9 +37,10 @@ Run `CROSS=1 make build`
 
 ## Docker image
 
-Run `docker run --rm -it rancher/cli [ARGS]`  You can pass in credentials by bind mounting in a config file.
+Run `docker run --rm -it -v <path-to-config>:/root/.rancher/cli2.json rancher/cli [ARGS]`.  
+Pass in credentials by replacing `<path-to-config>` with your config file for the server.
 
-To build `rancher/cli` just run `make`.  To use a custom Docker repository do `REPO=custom make` and it will producte `custom/cli` image.
+To build `rancher/cli` just run `make`.  To use a custom Docker repository do `REPO=custom make` and it will produce a `custom/cli` image.
 
 ## Contact
 
